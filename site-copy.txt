@@ -1,0 +1,261 @@
+================================================================================
+SSATCY — SITE COPY (working document)
+================================================================================
+Edit this file for drafts and refinement. The live site does NOT read this file
+automatically. After you finalize text, apply changes to:
+  • src/app/content.ts       (nav, events, gallery alts, social URLs/labels)
+  • src/app/App.tsx          (section body copy, hero, film/game blocks, footer)
+  • index.html               (page <title>, meta description, Open Graph, etc.)
+
+================================================================================
+INDEX.HTML — Meta & document title
+================================================================================
+<title>
+SSATCY | Sunshine Sneeze and the Contagious Yawn
+</title>
+
+<meta name="description"> / og:description / twitter:description (same text):
+SSATCY is a Toronto-based muscial duo. Explore our discography, film scoring, game soundtracks, events, and visual archive.
+
+<meta property="og:title"> / twitter:title:
+SSATCY | Sunshine Sneeze and the Contagious Yawn
+
+<meta property="og:site_name">:
+SSATCY
+
+<meta property="og:image:alt">:
+SSATCY artists portrait
+
+================================================================================
+ACCESSIBILITY & UI CHROME (App.tsx)
+================================================================================
+Skip link:
+Skip to main content
+
+Main nav aria-label:
+Main Navigation
+
+Mobile menu toggle aria-label:
+Toggle navigation menu
+
+Logo / home buttons aria-label:
+Scroll to home
+
+================================================================================
+NAV LABELS (content.ts — NAV_LINKS)
+================================================================================
+Home | Bio | Music | Film | Games | Live | Gallery
+
+================================================================================
+HERO (home)
+================================================================================
+Eyebrow:
+Toronto • Global
+
+Title (display):
+SSATCY
+
+Tagline:
+Sunshine Sneeze and the Contagious Yawn
+
+Primary CTA button:
+The Origin
+
+Hero background image alt:
+SSATCY Abstract Background
+
+================================================================================
+BIO — The Origin
+================================================================================
+Section title:
+The Origin
+
+Intro (SectionIntro description):
+Sunshine Sneeze and the Contagious Yawn (SSATCY) is the uncompromising musical vision of "Gorf" and "T.O Huxtable".
+
+Body paragraph 1:
+Forged in the creative crucibles of Toronto's digital advertising scene in 2005, Gorf (Designer/Developer) and Hux (Copywriter) discovered a shared sonic vision that would eventually birth SSATCY. What began as late-night discourse analyzing the visceral pulse of hip-hop and the ethereal textures of downtempo and jungle blossomed into a prolific creative partnership by 2010.
+
+Body paragraph 2:
+Eventually commandeering a shared studio on Audley Avenue, adjacent to the Mimico GO station in Toronto's West End, the duo began translating their myriad influences into an uncompromising amalgamation of sound.
+
+Body paragraph 3:
+Their early sessions were characterized by an obsession with analogue warmth, rhythmic complexity, and an unapologetic defiance of genre boundaries. Drawing deeply from hip-hop cadence and infusing it with lush soundscapes with worldly inspiration, SSATCY cultivated an auditory aesthetic that is at once intimate and sprawling.
+
+Bio portrait image alt:
+Portrait of Gorf and T.O Huxtable in their early days
+
+================================================================================
+MUSIC — Discography
+================================================================================
+Section title:
+Discography
+
+Title adornment (badge):
+Coming Soon
+
+Intro description:
+The SSATCY sonic archive is currently being mastered. Prepare for an uncompromising amalgamation of subterranean bass, ethereal downtempo, and structural precision.
+
+CTA button:
+View Live Dates
+
+================================================================================
+FILM — Section intro
+================================================================================
+Section title:
+Film Scoring & Foley
+
+Intro description:
+Crafting auditory architecture for narrative cinema. From evocative musical scores to meticulous foley recording and sound design, our production brings scenes to life with unparalleled structural precision.
+
+--------------------------------------------------------------------------------
+FILM — Tapped
+--------------------------------------------------------------------------------
+Poster image alt:
+Tapped film poster artwork
+
+Badge on poster:
+Award Winning
+
+Title:
+Tapped
+
+Meta line (date · festival):
+November 2015  ·  Toronto 50 Hour Film Festival
+
+Body:
+Winner of the "Best Film" award at Toronto's 50 Hour Film Festival. We composed the complete original score and handled all Foley recording and production under an extreme deadline, delivering a tense, atmospheric soundtrack that anchored the film's narrative momentum. The project showcases our ability to rapidly conceptualize and execute professional-grade auditory landscapes.
+
+CTA (currently commented out in code — restore when link exists):
+Watch Excerpt
+
+--------------------------------------------------------------------------------
+FILM — Unit 5 Pilot
+--------------------------------------------------------------------------------
+Image alt:
+Unit 5 comic artwork panel
+
+Title:
+Unit 5 Pilot
+
+Meta line:
+July 2014  ·  Dir. Brian Faraldo  ·  Collab. Skip Winter
+
+Body:
+We had the distinct privilege of scoring and managing the complete Foley recording and production for the Unit 5 pilot, directed by our client Brian Faraldo and executed in collaboration with Skip Winter. The piece was meticulously crafted for review on Kevin Smith's Smodcast Internet Television, requiring a professional and resonant soundscape that matched the caliber of its intended platform.
+
+CTA (commented out):
+Watch Excerpt
+
+================================================================================
+GAMES
+================================================================================
+Section title:
+Game Soundtracks
+
+Section lead:
+Dynamic, adaptive sonic environments engineered for digital immersion. Bringing character, momentum, and impact to interactive experiences.
+
+--------------------------------------------------------------------------------
+KnickKnack
+--------------------------------------------------------------------------------
+Image alt:
+KnickKnack promotional artwork
+
+Title:
+KnickKnack
+
+Meta line:
+December 2013  ·  Relish Interactive  ·  Some Assembly Required
+
+Body:
+We engineered the complete soundtrack and audio package for "KnickKnack", the interactive spin-off game supporting the hit television series "Some Assembly Required". Our work focused on capturing the show's kinetic energy while providing a looping, non-fatiguing auditory backdrop suitable for extended gameplay sessions.
+
+CTA (commented out):
+Listen to Score
+
+================================================================================
+LIVE
+================================================================================
+Section title:
+Live & DJ Sets
+
+Section lead:
+Experience the visceral energy of SSATCY in the physical realm. From intimate underground DJ sets to live public addresses and festival performances.
+
+Featured archive (full-width card — HandlebarEventCard):
+Nite Comfort 10 flyer thumbnail with “View full flyer” opening an accessible dialog (full image). Event details: Sunday July 6, 2014; Handlebar; 159 Augusta Avenue; PWYC; with 0=0, SSATCY, Theatreblack (see flyer alt in content.ts HANDLEBAR_NITE_COMFORT_FEATURE).
+
+Subheading — upcoming block:
+Upcoming Transmissions
+
+Empty state title:
+Transmissions Paused
+
+Empty state body:
+No upcoming shows are currently scheduled. Stay tuned to our channels for future live appearances and studio updates.
+
+Subheading — archive:
+Archive & Past Sets
+
+Upcoming event card (when UPCOMING_EVENTS has items) — button labels:
+Tickets | Unavailable
+Badge:
+SOLD OUT
+
+--------------------------------------------------------------------------------
+PAST EVENTS (content.ts — PAST_EVENTS)
+--------------------------------------------------------------------------------
+Event 1:
+  date: JUL 06
+  year: 2014
+  eventName: Nite Comfort 10
+  venue: Handlebar
+  location: Kensington Market, Toronto
+  type: Live Performance
+
+(UPCOMING_EVENTS is currently empty — add rows in content.ts when booking.)
+
+================================================================================
+GALLERY
+================================================================================
+Section title:
+Visual Archive
+
+Section lead:
+Compiled from analog film rolls and late-night gig archives. Standalone moments from the studio.
+
+Image alts (content.ts — GALLERY_IMAGES, in order):
+1. Studio Synthesis rig
+2. Late Night Mixing session
+3. The Command Center desk
+4. Synth Rig Setup cables
+5. Mixing console overview
+6. Live at Nite Comfort 10, Handlebar, Toronto, July 6, 2014
+7. Gorf and T.O Huxtable in Toronto Maple Leafs jerseys (GORF and HUXTABLE on the back) outside the garage
+
+================================================================================
+FOOTER
+================================================================================
+Brand line (under logo):
+SSATCY
+
+Tagline:
+A sonic amalgamation of hip-hop, downtempo, jungle, and world music, originating from Toronto's West End. Uncompromising production meeting immersive storytelling.
+
+Column — Inquiries
+Inquiries
+
+Email (display & mailto):
+management@ssatcy.com
+
+Support copy:
+Available for sync licensing, live performances, DJ sets, or brand collaborations globally.
+
+Copyright line (year is automatic in code):
+© [year] SSATCY. All Rights Reserved.
+
+================================================================================
+END
+================================================================================
