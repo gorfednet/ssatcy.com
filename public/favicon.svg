@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SSATCY">
+  <!-- Matches SiteLogoMark: zinc-900 circle, vinyl disc, Jamaica accent strip -->
+  <circle cx="256" cy="256" r="240" fill="#18181b" stroke="#ffffff33" stroke-width="8"/>
+  <!-- Vinyl disc (simplified Lucide-style glyph) -->
+  <circle cx="256" cy="248" r="108" fill="none" stroke="#d4d4d8" stroke-width="28"/>
+  <circle cx="256" cy="248" r="32" fill="#18181b"/>
+  <!-- Green / yellow / red accent at bottom of circle -->
+  <rect x="56" y="408" width="133" height="24" fill="#16a34a"/>
+  <rect x="189" y="408" width="134" height="24" fill="#eab308"/>
+  <rect x="323" y="408" width="133" height="24" fill="#dc2626"/>
+</svg>

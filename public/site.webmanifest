@@ -1,0 +1,23 @@
+{
+  "name": "SSATCY | Sunshine Sneeze and the Contagious Yawn",
+  "short_name": "SSATCY",
+  "description": "SSATCY is a Toronto-based musical duo. Explore our discography, film scoring, game soundtracks, events, and visual archive.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#09090b",
+  "background_color": "#09090b",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

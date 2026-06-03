@@ -38,6 +38,7 @@ Open the URL Vite prints (typically `http://localhost:5173`).
 | `npm run build` | Production build → `dist/` |
 | `npm run deploy:smb` | Build, then `rsync` `dist/` to `$SMB_DEPLOY_TARGET` |
 | `npm run smoke:deeplinks` | HTTP 200 check for `/`, `/bio`, … `/contact` |
+| `npm run icons` | Regenerate favicon PNG/ICO and `site.webmanifest` from `public/favicon.svg` |
 
 **Make shortcuts** (same behavior):
 
@@ -73,7 +74,10 @@ make smoke           # defaults to https://ssatcy.com
 
 ```
 ├── index.html          # Shell, SEO / Open Graph meta, CSP
-├── public/             # Static files copied to dist root (e.g. og-image.png)
+├── public/             # Static files copied to dist root (og-image, favicon suite, manifest)
+│   ├── favicon.svg     # Master icon (edit this, then run `npm run icons`)
+│   ├── favicon.ico, apple-touch-icon.png, icon-192.png, icon-512.png, …
+│   └── site.webmanifest
 ├── src/
 │   ├── main.tsx
 │   ├── app/

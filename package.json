@@ -8,7 +8,8 @@
     "build": "vite build",
     "postbuild": "cp _headers .htaccess dist/ && for route in bio music film games live gallery contact; do mkdir -p \"dist/$route\" && cp dist/index.html \"dist/$route/index.html\"; done",
     "deploy:smb": "npm run build && (test -n \"$SMB_DEPLOY_TARGET\" || (echo 'Set SMB_DEPLOY_TARGET to your mounted site root (e.g. /Volumes/data/websites/ssatcy.com)' >&2; exit 1)) && rsync -av --delete dist/ \"$SMB_DEPLOY_TARGET/\"",
-    "smoke:deeplinks": "bash ./scripts/smoke-deeplinks.sh"
+    "smoke:deeplinks": "bash ./scripts/smoke-deeplinks.sh",
+    "icons": "node scripts/generate-favicons.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -72,7 +73,9 @@
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
+    "sharp": "^0.34.2",
     "tailwindcss": "4.1.12",
+    "to-ico": "^1.1.5",
     "vite": "6.3.5"
   },
   "pnpm": {
