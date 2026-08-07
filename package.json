@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:compat": "playwright test e2e/smoke.spec.ts --project=chromium --project=firefox --project=webkit",
     "postbuild": "cp _headers .htaccess dist/ && for route in bio music film games live gallery contact; do mkdir -p \"dist/$route\" && cp dist/index.html \"dist/$route/index.html\"; done",
     "deploy:smb": "npm run build && (test -n \"$SMB_DEPLOY_TARGET\" || (echo 'Set SMB_DEPLOY_TARGET to your mounted site root (e.g. /Volumes/data/websites/ssatcy.com)' >&2; exit 1)) && rsync -av --delete dist/ \"$SMB_DEPLOY_TARGET/\"",
     "smoke:deeplinks": "bash ./scripts/smoke-deeplinks.sh",
@@ -71,6 +74,7 @@
     "vaul": "1.1.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
     "sharp": "^0.34.2",
