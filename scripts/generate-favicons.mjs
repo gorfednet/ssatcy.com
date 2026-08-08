@@ -1,12 +1,11 @@
 /**
- * Rasterize public/favicon.svg into ICO/PNG suite and site.webmanifest.
+ * Rasterize public/favicon.svg into PNG assets and site.webmanifest.
  * Run: npm run icons
  */
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import toIco from "to-ico";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -32,16 +31,6 @@ for (const { name, size } of pngSizes) {
     .toFile(out);
   console.log(`Wrote ${name}`);
 }
-
-const icoPngBuffers = await Promise.all(
-  [16, 32, 48].map((size) =>
-    sharp(svg, { density: 72 }).resize(size, size).png().toBuffer(),
-  ),
-);
-
-const ico = await toIco(icoPngBuffers);
-await writeFile(path.join(publicDir, "favicon.ico"), ico);
-console.log("Wrote favicon.ico");
 
 const manifest = {
   name: "SSATCY | Sunshine Sneeze and the Contagious Yawn",

@@ -9,7 +9,7 @@ Official website for **SSATCY** (Sunshine Sneeze and the Contagious Yawn) — a 
 | Layer | Choice |
 |-------|--------|
 | UI | React 18 + TypeScript (TSX) |
-| Build | [Vite](https://vite.dev/) 6 |
+| Build | [Vite](https://vite.dev/) 8 |
 | Styling | Tailwind CSS 4 (`@tailwindcss/vite`) |
 | Motion | [Motion](https://motion.dev/) |
 | Deploy | Static `dist/` (Apache `.htaccess` + optional Netlify-style `_headers`) |
@@ -18,7 +18,7 @@ The app is a **single-page site** with section scrolling and path-based deep lin
 
 ## Prerequisites
 
-- Node.js 18+ (20+ recommended)
+- Node.js 20.19+ or 22.12+
 - npm
 
 ## Quick start
@@ -38,7 +38,9 @@ Open the URL Vite prints (typically `http://localhost:5173`).
 | `npm run build` | Production build → `dist/` |
 | `npm run deploy:smb` | Build, then `rsync` `dist/` to `$SMB_DEPLOY_TARGET` |
 | `npm run smoke:deeplinks` | HTTP 200 check for `/`, `/bio`, … `/contact` |
-| `npm run icons` | Regenerate favicon PNG/ICO and `site.webmanifest` from `public/favicon.svg` |
+| `npm run icons` | Regenerate favicon PNGs and `site.webmanifest` from `public/favicon.svg` |
+| `npm run images` | Regenerate responsive WebP assets with Sharp |
+| `npm run check:size` | Verify production JavaScript, CSS, and image budgets |
 
 **Make shortcuts** (same behavior):
 
@@ -81,11 +83,16 @@ make smoke           # defaults to https://ssatcy.com
 ├── src/
 │   ├── main.tsx
 │   ├── app/
-│   │   ├── App.tsx           # Layout, sections, routing via pathname
+│   │   ├── App.tsx           # Navigation and routing via pathname
 │   │   ├── content.ts        # Nav, events, gallery, feature image imports
+│   │   ├── sections/         # Static page sections
 │   │   └── components/       # Shared UI (SectionIntro, cards, etc.)
+│   ├── assets/images/
+│   │   └── generated/        # Responsive WebP variants
 │   └── styles/               # Global CSS, Tailwind entry
 ├── scripts/
+│   ├── check-build-size.mjs  # Production asset budgets
+│   ├── optimize-images.mjs   # Responsive image generator
 │   └── smoke-deeplinks.sh    # Post-deploy HTTP smoke test
 ├── _headers                # Security / cache headers (copied to dist)
 ├── .htaccess               # Apache SPA fallback + headers (copied to dist)
@@ -97,7 +104,7 @@ make smoke           # defaults to https://ssatcy.com
 | What you change | Where |
 |-----------------|--------|
 | Nav, events, gallery alts, image imports | `src/app/content.ts` |
-| Section body copy, hero, footer | `src/app/App.tsx` |
+| Section body copy, hero, footer | `src/app/sections/*.tsx` |
 | Page title, meta description, OG/Twitter | `index.html` |
 | Draft / long-form copy notes | `site-copy.txt` (manual sync to code) |
 

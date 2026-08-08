@@ -17,6 +17,9 @@ export function HandlebarEventCard() {
 
   const {
     flyerSrc,
+    flyerSrcSet,
+    flyerWidth,
+    flyerHeight,
     flyerAlt,
     addressLine,
     admissionShort,
@@ -43,9 +46,11 @@ export function HandlebarEventCard() {
                 <span className="photo-grayscale-thumb relative h-full min-h-[200px] w-full origin-center transition-transform duration-500 ease-out group-hover:scale-[1.02] group-active:scale-[1.02] motion-reduce:group-hover:scale-100 motion-reduce:group-active:scale-100 md:min-h-[280px]">
                   <img
                     src={flyerSrc}
+                    srcSet={flyerSrcSet}
+                    sizes="(min-width: 1024px) 55vw, 100vw"
                     alt=""
-                    width={954}
-                    height={369}
+                    width={flyerWidth}
+                    height={flyerHeight}
                     loading="lazy"
                     decoding="async"
                     className="h-full min-h-[200px] w-full object-cover object-center md:min-h-[280px]"
@@ -91,9 +96,11 @@ export function HandlebarEventCard() {
                 <div className="relative">
                   <img
                     src={flyerSrc}
+                    srcSet={flyerSrcSet}
+                    sizes="min(56rem, calc(100vw - 1.5rem))"
                     alt={flyerAlt}
-                    width={954}
-                    height={369}
+                    width={flyerWidth}
+                    height={flyerHeight}
                     loading="eager"
                     decoding="async"
                     className="mx-auto h-auto max-h-[min(85vh,560px)] w-full object-contain"

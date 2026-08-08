@@ -1,6 +1,5 @@
 @import './fonts.css';
 @import './tailwind.css';
-@import './theme.css';
 
 /* Global surface lock: prevents white flashes on initial paint and during overscroll. */
 html,

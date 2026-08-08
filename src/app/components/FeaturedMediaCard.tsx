@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
+import type { ResponsiveImage } from "../content";
 
 type FeaturedMediaCardProps = {
   layout: "image-start" | "image-end";
-  imageSrc: string;
+  image: ResponsiveImage;
   imageAlt: string;
   title: string;
   meta: ReactNode;
@@ -19,7 +20,7 @@ type FeaturedMediaCardProps = {
  */
 export function FeaturedMediaCard({
   layout,
-  imageSrc,
+  image,
   imageAlt,
   title,
   meta,
@@ -42,7 +43,11 @@ export function FeaturedMediaCard({
     >
       <span className="photo-grayscale-feature-thumb absolute inset-0 block">
         <img
-          src={imageSrc}
+          src={image.src}
+          srcSet={image.srcSet}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          width={image.width}
+          height={image.height}
           alt={imageAlt}
           loading="lazy"
           decoding="async"
