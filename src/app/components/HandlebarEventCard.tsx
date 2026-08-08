@@ -78,7 +78,7 @@ export function HandlebarEventCard() {
                   id={dialogTitleId}
                   className="sr-only"
                 >
-                  {event.eventName} — full flyer
+                  Full flyer for {event.eventName}
                 </Dialog.Title>
                 <Dialog.Description
                   id={dialogDescId}
@@ -119,7 +119,7 @@ export function HandlebarEventCard() {
 
         <div className="flex flex-col justify-center border-t border-white/10 p-6 md:border-l md:border-t-0 md:p-8 lg:p-10">
           <p className="mb-2 text-xs font-black uppercase tracking-[0.25em] text-yellow-500/90">
-            Archive highlight
+            From the archive
           </p>
           <h3
             id="handlebar-feature-heading"
@@ -128,8 +128,9 @@ export function HandlebarEventCard() {
             {event.eventName}
           </h3>
           <p className="site-copy-muted mb-6">
-            Original lineup poster for the night SSATCY performed with 0=0 and
-            Theatreblack.
+            A night at Handlebar in Kensington Market with 0=0 and Theatreblack.
+            The original flyer has survived, complete with the pay-what-you-can
+            invitation.
           </p>
           <ul className="list-none space-y-3 p-0 text-lg text-zinc-300 md:text-xl">
             <li className="flex flex-col gap-1 sm:flex-row sm:gap-4">

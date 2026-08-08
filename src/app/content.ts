@@ -77,18 +77,33 @@ export const HANDLEBAR_NITE_COMFORT_FEATURE = {
 } as const;
 
 export const GALLERY_IMAGES: GalleryImage[] = [
-  { src: img2, alt: "Studio Synthesis rig" },
-  { src: img3, alt: "Late Night Mixing session" },
-  { src: img6, alt: "The Command Center desk" },
-  { src: img4, alt: "Synth Rig Setup cables" },
-  { src: img7, alt: "Mixing console overview" },
+  {
+    src: img2,
+    alt: "Gorf working at a mixing console surrounded by keyboards and studio monitors",
+  },
+  {
+    src: img3,
+    alt: "Overhead view of Hux working at a late-night studio session",
+  },
+  {
+    src: img6,
+    alt: "SSATCY studio with keyboards, turntables, drum pads, and monitors",
+  },
+  {
+    src: img4,
+    alt: "Gorf adjusting a stacked wall of synthesizers in the studio",
+  },
+  {
+    src: img7,
+    alt: "Hux cueing a record on turntables while wearing headphones",
+  },
   {
     src: niteComfort10Handlebar,
     alt: "Live at Nite Comfort 10, Handlebar, Toronto, July 6, 2014",
   },
   {
     src: img9,
-    alt: "Gorf and T.O Huxtable in Toronto Maple Leafs jerseys (GORF and HUXTABLE on the back) outside the garage",
+    alt: "Hux and Gorf in personalized Toronto Maple Leafs jerseys outside a red garage",
   },
 ];
 

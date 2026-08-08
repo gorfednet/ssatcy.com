@@ -47,7 +47,7 @@ const manifest = {
   name: "SSATCY | Sunshine Sneeze and the Contagious Yawn",
   short_name: "SSATCY",
   description:
-    "SSATCY is a Toronto-based musical duo. Explore our discography, film scoring, game soundtracks, events, and visual archive.",
+    "SSATCY is a Toronto musical duo creating original music, film scores, foley, game soundtracks, and live sets from the city's West End.",
   start_url: "/",
   display: "standalone",
   theme_color: "#09090b",

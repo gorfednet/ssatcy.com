@@ -364,7 +364,7 @@ export default function App() {
           >
             <div className="absolute inset-0 bg-zinc-950/80 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-zinc-950/80 z-20" />
-            {/* Jamaican accent wash — heavy blur so blobs read as ambient color, not shapes */}
+            {/* Jamaican accent wash. Heavy blur keeps blobs ambient rather than geometric. */}
             <div className="absolute -bottom-32 left-0 w-[min(100%,48rem)] h-[22rem] md:h-[28rem] bg-yellow-500/[0.07] rounded-full z-10 mix-blend-screen blur-[100px] md:blur-[130px] scale-125" />
             <div className="absolute top-[8%] -right-24 w-[28rem] h-[28rem] md:w-[36rem] md:h-[36rem] bg-red-600/[0.07] rounded-full z-10 mix-blend-screen blur-[100px] md:blur-[130px]" />
             <div className="absolute bottom-[12%] -left-20 w-[26rem] h-[26rem] md:w-[34rem] md:h-[34rem] bg-green-600/[0.07] rounded-full z-10 mix-blend-screen blur-[100px] md:blur-[130px]" />
@@ -373,7 +373,7 @@ export default function App() {
             <div className="group relative w-full h-full">
               <img
                 src={FEATURE_IMAGES.bio}
-                alt="SSATCY Abstract Background"
+                alt="Early portrait of Gorf and T.O Huxtable under warm orange light"
                 className="w-full h-full object-cover object-[center_45%] opacity-40 grayscale contrast-125 transition-all duration-1000"
               />
             </div>
@@ -391,7 +391,7 @@ export default function App() {
                 aria-hidden="true"
               />
               <span className="text-yellow-500 font-bold tracking-[0.4em] uppercase text-xs md:text-sm">
-                Toronto • Global
+                Toronto, Then Everywhere
               </span>
               <div
                 className="h-px w-8 md:w-16 bg-gradient-to-l from-transparent to-red-500/50"
@@ -430,7 +430,7 @@ export default function App() {
                 onClick={() => scrollToSection("bio")}
                 className="group flex items-center justify-center gap-3 bg-yellow-500 text-black px-6 py-4 md:px-10 md:py-5 rounded-sm font-black tracking-widest uppercase hover:bg-yellow-400 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-500/50 w-full sm:w-auto shadow-xl"
               >
-                The Origin
+                How It Started
                 <ArrowRight
                   className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                   aria-hidden="true"
@@ -467,15 +467,15 @@ export default function App() {
                 title="The Origin"
                 description={
                   <>
-                    Sunshine Sneeze and the Contagious Yawn
-                    (SSATCY) is the uncompromising musical vision
-                    of{" "}
+                    Sunshine Sneeze and the Contagious Yawn, better
+                    known as SSATCY, is the long-running musical
+                    collaboration between{" "}
                     <ExternalSiteLink href="https://gorfmusic.com">
-                      "Gorf"
+                      Gorf
                     </ExternalSiteLink>{" "}
                     and{" "}
                     <ExternalSiteLink href="https://tohuxtable.bandcamp.com/">
-                      "T.O Huxtable"
+                      T.O Huxtable
                     </ExternalSiteLink>
                     .
                   </>
@@ -492,39 +492,27 @@ export default function App() {
                 className="lg:col-span-7 flex flex-col gap-8 site-copy"
               >
                 <p>
-                  Forged in the creative crucibles of Toronto's
-                  digital advertising scene in 2005,{" "}
-                  <ExternalSiteLink href="https://gorfmusic.com">
-                    Gorf
-                  </ExternalSiteLink>{" "}
-                  (Designer/Developer) and{" "}
-                  <ExternalSiteLink href="https://tohuxtable.bandcamp.com/">
-                    Hux
-                  </ExternalSiteLink>{" "}
-                  (Copywriter)
-                  discovered a shared sonic vision that would
-                  eventually birth SSATCY. What began as
-                  late-night discourse analyzing the visceral
-                  pulse of hip-hop and the ethereal textures of
-                  downtempo and jungle blossomed into a prolific
-                  creative partnership by 2010.
+                  Gorf and Hux met in Toronto&apos;s digital
+                  advertising world in 2005. Gorf worked in design
+                  and development; Hux worked in copy. The real
+                  conversation started after hours: hip-hop drums,
+                  the hazy pull of downtempo, the pressure and release
+                  of jungle. By 2010, those late-night debates had
+                  become SSATCY.
                 </p>
                 <p>
-                  Eventually commandeering a shared studio on
-                  Audley Avenue, adjacent to the Mimico GO
-                  station in Toronto's West End, the duo began
-                  translating their myriad influences into an
-                  uncompromising amalgamation of sound.
+                  They set up a shared studio on Audley Avenue, close
+                  enough to Mimico GO to hear trains thread through
+                  Toronto&apos;s West End. It became a place to follow
+                  ideas without asking which genre they belonged to.
                 </p>
                 <p>
-                  Their early sessions were characterized by an
-                  obsession with analogue warmth, rhythmic
-                  complexity, and an unapologetic defiance of
-                  genre boundaries. Drawing deeply from hip-hop
-                  cadence and infusing it with lush soundscapes
-                  with worldly inspiration, SSATCY cultivated an
-                  auditory aesthetic that is at once intimate
-                  and sprawling.
+                  The early sessions chased analogue warmth, intricate
+                  rhythm, and room for a track to breathe. Hip-hop
+                  supplied the backbone. Sounds from farther afield
+                  widened the frame. The result is music that can feel
+                  close enough for headphones and large enough for a
+                  screen, a room, or a stage.
                 </p>
               </motion.div>
 
@@ -547,7 +535,7 @@ export default function App() {
                 >
                   <img
                     src={FEATURE_IMAGES.bio}
-                    alt="Portrait of Gorf and T.O Huxtable in their early days"
+                    alt="Early portrait of Gorf and T.O Huxtable under warm orange light"
                     className="w-full h-auto object-cover"
                   />
                 </motion.div>
@@ -616,10 +604,10 @@ export default function App() {
                 }
                 description={
                   <>
-                    The SSATCY sonic archive is currently being
-                    mastered. Prepare for an uncompromising
-                    amalgamation of subterranean bass, ethereal
-                    downtempo, and structural precision.
+                    The first SSATCY releases are in the final stages
+                    of mastering. They carry deep bass, unhurried
+                    atmosphere, and rhythms shaped down to the
+                    smallest turn.
                   </>
                 }
               />
@@ -639,7 +627,7 @@ export default function App() {
                 onClick={() => scrollToSection("live")}
                 className="w-full sm:w-auto px-6 py-4 md:px-10 md:py-5 bg-yellow-500 text-black font-black uppercase tracking-widest hover:bg-yellow-400 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-500/50 rounded-sm shadow-xl"
               >
-                View Live Dates
+                See Live Dates
               </motion.button>
             </motion.div>
           </div>
@@ -676,11 +664,10 @@ export default function App() {
                 title="Film Scoring & Foley"
                 description={
                   <>
-                    Crafting auditory architecture for narrative
-                    cinema. From evocative musical scores to
-                    meticulous foley recording and sound design,
-                    our production brings scenes to life with
-                    unparalleled structural precision.
+                    A picture can tell you where you are. Sound tells
+                    you how it feels. SSATCY creates original scores,
+                    foley, and sound design that give stories texture,
+                    tension, and a pulse of their own.
                   </>
                 }
               />
@@ -696,7 +683,7 @@ export default function App() {
                 <div className="absolute bottom-6 left-6 z-10 flex items-center gap-3 bg-black/80 px-4 py-2 border border-white/10 rounded-full text-yellow-500">
                   <Trophy className="w-5 h-5" aria-hidden="true" />
                   <span className="text-xs font-bold uppercase tracking-widest">
-                    Award Winning
+                    Best Film Winner
                   </span>
                 </div>
               }
@@ -714,13 +701,11 @@ export default function App() {
               }
             >
               <p className="site-copy-muted mb-8 md:mb-10">
-                Winner of the "Best Film" award at Toronto's 50 Hour Film
-                Festival. We composed the complete original score and handled
-                all Foley recording and production under an extreme deadline,
-                delivering a tense, atmospheric soundtrack that anchored the
-                film's narrative momentum. The project showcases our ability to
-                rapidly conceptualize and execute professional-grade auditory
-                landscapes.
+                Tapped won Best Film at the Toronto 50 Hour Film Festival in
+                2015. With the clock already running, we wrote the full original
+                score and recorded and produced every foley cue. The finished
+                soundtrack builds tension without crowding the story, and proves
+                how quickly a clear musical idea can become a finished world.
               </p>
             </FeaturedMediaCard>
 
@@ -747,13 +732,12 @@ export default function App() {
               }
             >
               <p className="site-copy-muted mb-8 md:mb-10">
-                We had the distinct privilege of scoring and managing the
-                complete Foley recording and production for the Unit 5 pilot,
-                directed by our client Brian Faraldo and executed in
-                collaboration with Skip Winter. The piece was meticulously
-                crafted for review on Kevin Smith's Smodcast Internet
-                Television, requiring a professional and resonant soundscape that
-                matched the caliber of its intended platform.
+                For Brian Faraldo&apos;s Unit 5 pilot, we composed the score and
+                led the full foley recording and production in collaboration
+                with Skip Winter. The pilot was prepared for review by Kevin
+                Smith&apos;s Smodcast Internet Television. Our job was to give
+                its comic-book energy a sound with weight, movement, and its own
+                identity.
               </p>
             </FeaturedMediaCard>
           </div>
@@ -786,9 +770,9 @@ export default function App() {
                 title="Game Soundtracks"
                 description={
                   <>
-                    Dynamic, adaptive sonic environments engineered for digital
-                    immersion. Bringing character, momentum, and impact to
-                    interactive experiences.
+                    Game music has to move with the player and stay rewarding
+                    long after the first loop. We write soundtracks that carry
+                    character, pace, and a sense of place into the experience.
                   </>
                 }
               />
@@ -817,12 +801,11 @@ export default function App() {
               }
             >
               <p className="site-copy-muted mb-8 md:mb-10">
-                We engineered the complete soundtrack and audio package for
-                "KnickKnack", the interactive spin-off game supporting the hit
-                television series "Some Assembly Required". Our work focused on
-                capturing the show's kinetic energy while providing a looping,
-                non-fatiguing auditory backdrop suitable for extended gameplay
-                sessions.
+                For KnickKnack, Relish Interactive&apos;s game connected to the
+                television series Some Assembly Required, we created the
+                complete soundtrack and audio package. The music keeps pace with
+                the show&apos;s bright, restless energy while leaving enough air
+                for repeated play.
               </p>
             </FeaturedMediaCard>
           </div>
@@ -860,9 +843,10 @@ export default function App() {
                 title="Live & DJ Sets"
                 description={
                   <>
-                    Experience the visceral energy of SSATCY in the physical
-                    realm. From intimate underground DJ sets to live public
-                    addresses and festival performances.
+                    SSATCY moves between close-quarters DJ sets, live
+                    performance, and festival stages. Different rooms call for
+                    different pressure, but the aim stays the same: make the
+                    music feel immediate.
                   </>
                 }
               />
@@ -879,7 +863,7 @@ export default function App() {
             >
               <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
                 <h3 className="text-xl md:text-2xl font-bold text-white uppercase tracking-widest">
-                  Upcoming Transmissions
+                  Upcoming Shows
                 </h3>
                 <div
                   className="w-2.5 h-2.5 rounded-full bg-red-500"
@@ -993,19 +977,19 @@ export default function App() {
                       />
                     </div>
                     <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-widest mb-4">
-                      Transmissions Paused
+                      Nothing Announced Yet
                     </h4>
                     <p className="mx-auto max-w-xl text-lg font-light leading-relaxed text-zinc-500 md:text-xl">
-                      No upcoming shows are currently scheduled.
-                      Stay tuned to our channels for future live
-                      appearances and studio updates.
+                      There are no upcoming dates on the calendar.
+                      New shows and studio news will appear here
+                      when they are ready.
                     </p>
                   </motion.div>
                 )}
               </div>
             </motion.div>
 
-            {/* Past Dates — skip first row when it is featured in HandlebarEventCard above */}
+            {/* Skip the first past date when HandlebarEventCard features it above. */}
             {PAST_EVENTS.length > 1 ? (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -1015,7 +999,7 @@ export default function App() {
               >
                 <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
                   <h3 className="text-lg md:text-xl font-bold text-zinc-500 uppercase tracking-widest">
-                    Archive & Past Sets
+                    Past Sets
                   </h3>
                   <Calendar
                     className="w-6 h-6 text-zinc-500"
@@ -1073,7 +1057,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* GALLERY SECTION — grayscale by default; color on hover / active (tap) */}
+        {/* GALLERY SECTION: grayscale by default; color on hover or active tap */}
         <section
           id="gallery"
           className="py-20 md:py-32 bg-black relative overflow-hidden z-20 border-t border-white/5"
@@ -1113,8 +1097,8 @@ export default function App() {
                 title="Visual Archive"
                 description={
                   <>
-                    Compiled from analog film rolls and late-night gig archives.
-                    Standalone moments from the studio.
+                    Photographs from the studio and the stage, with a little
+                    Toronto life in between.
                   </>
                 }
               />
@@ -1188,10 +1172,10 @@ export default function App() {
                 />
               </button>
               <p className="site-copy-muted max-w-md">
-                A sonic amalgamation of hip-hop, downtempo,
-                jungle, and world music, originating from
-                Toronto's West End. Uncompromising production
-                meeting immersive storytelling.
+                Music made in Toronto&apos;s West End from hip-hop,
+                downtempo, jungle, and sounds gathered farther
+                afield. Built for headphones, screens, and rooms
+                with the lights low.
               </p>
             </div>
 
@@ -1231,9 +1215,9 @@ export default function App() {
                   )}
                 </li>
                 <li className="text-lg leading-relaxed text-zinc-500 md:text-xl">
-                  Available for sync licensing, live
-                  performances, DJ sets, or brand collaborations
-                  globally.
+                  Working from Toronto and available worldwide for
+                  sync licensing, scoring, live performances, DJ
+                  sets, and selected brand collaborations.
                 </li>
               </ul>
             </div>
