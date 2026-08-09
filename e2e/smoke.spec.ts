@@ -17,10 +17,10 @@ test.describe('smoke', () => {
         }
       })
 
-      const response = await page.goto(route)
+      const response = await page.goto(route, { waitUntil: 'domcontentloaded' })
       expect(response?.status()).toBeLessThan(400)
-      await expect(page.locator('body')).toBeVisible()
       await page.waitForLoadState('networkidle')
+      await expect(page.locator('body')).toBeVisible()
       expect(errors, `page errors on ${route}: ${errors.join('; ')}`).toEqual([])
       expect(
         failedAssets,
