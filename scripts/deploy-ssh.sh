@@ -34,7 +34,7 @@ acquire_lock
 if [[ -n "${DEPLOY_LOCAL_TARGET:-}" ]]; then
   REMOTE_TARGET="${DEPLOY_LOCAL_TARGET%/}/"
   run_rsync() {
-    rsync -rltvp --no-owner --no-group "$@"
+    (umask 022; rsync -rltv --no-perms --no-owner --no-group "$@")
   }
 else
   NAS_SSH_HELPER="${NAS_SSH_HELPER:-${ROOT_DIR}/../gorfednet.github/scripts/nas-ssh-deploy.sh}"
@@ -51,11 +51,13 @@ else
   nas_ssh_preflight "${NAS_SITE_DIR}"
   run_rsync() {
     rsync \
-      -rltvpz \
+      -rltvz \
+      --no-perms \
       --no-owner \
       --no-group \
       --timeout=120 \
       --partial-dir=.rsync-partial \
+      --rsync-path="umask 022 && rsync" \
       -e "${RSYNC_SHELL}" \
       "$@"
   }
