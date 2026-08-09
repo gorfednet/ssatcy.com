@@ -95,21 +95,16 @@ export function FilmSection() {
                 aria-hidden="true"
               />
               <span className="text-zinc-300">Dir. Brian Faraldo</span>
-              <div
-                className="w-1.5 h-1.5 rounded-full bg-green-500"
-                aria-hidden="true"
-              />
-              <span className="text-zinc-300">Collab. Skip Winter</span>
             </>
           }
         >
           <p className="site-copy-muted mb-8 md:mb-10">
-            For Brian Faraldo&apos;s Unit 5 pilot, we composed the score and
-            led the full foley recording and production in collaboration
-            with Skip Winter. The pilot was prepared for review by Kevin
-            Smith&apos;s Smodcast Internet Television. Our job was to give
-            its comic-book energy a sound with weight, movement, and its own
-            identity.
+            For Brian Faraldo&apos;s Unit 5 pilot, we recorded and produced
+            the full foley track to replace live-recorded sound that had been
+            deleted, with additional involvement from Skip Winter. The pilot
+            was prepared for review by Kevin Smith&apos;s Smodcast Internet
+            Television. Our job was to give its comic-book energy a sound
+            with weight, movement, and its own identity.
           </p>
         </FeaturedMediaCard>
       </div>
