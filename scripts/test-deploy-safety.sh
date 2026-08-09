@@ -17,24 +17,12 @@ printf 'new asset\n' > "${DIST_DIR}/assets/new-release.js"
 printf 'old release\n' > "${TARGET_DIR}/index.html"
 printf 'old asset\n' > "${TARGET_DIR}/assets/old-release.js"
 
-FAKE_RSYNC="${TEST_ROOT}/fail-rsync.sh"
-cat > "${FAKE_RSYNC}" <<'EOF'
-#!/usr/bin/env bash
-if [[ "$*" == *"assets/"* ]]; then
-  exit 20
-fi
-exec rsync "$@"
-EOF
-chmod +x "${FAKE_RSYNC}"
-
-ln -sf "${FAKE_RSYNC}" "${TEST_ROOT}/rsync"
-
-if PATH="${TEST_ROOT}:${PATH}" \
-  DIST_DIR="${DIST_DIR}" \
+if DIST_DIR="${DIST_DIR}" \
   DEPLOY_LOCAL_TARGET="${TARGET_DIR}" \
   DEPLOY_SKIP_ORIGIN_VERIFY=1 \
+  DEPLOY_FAIL_AFTER_STAGE=1 \
   bash "${ROOT_DIR}/scripts/deploy-ssh.sh"; then
-  echo "Expected the simulated asset transfer to fail." >&2
+  echo "Expected the simulated staged deployment to fail." >&2
   exit 1
 fi
 
