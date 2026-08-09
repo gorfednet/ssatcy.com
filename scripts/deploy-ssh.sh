@@ -5,6 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="${DIST_DIR:-${ROOT_DIR}/dist}"
 PRODUCTION_URL="${PRODUCTION_URL:-https://ssatcy.com}"
 LOCK_DIR="${TMPDIR:-/tmp}/ssatcy-com-deploy.lock"
+DEPLOY_DIST_DIR="${DIST_DIR}"
+STAGING_DIR=""
 
 if [[ ! -f "${DIST_DIR}/index.html" || ! -d "${DIST_DIR}/assets" ]]; then
   echo "Missing production build at ${DIST_DIR}; run npm run build first." >&2
@@ -31,10 +33,22 @@ acquire_lock() {
 
 acquire_lock
 
+RSYNC_PERMISSION_ARGS=(--no-perms --no-owner --no-group --chmod=D755,F644)
+if [[ "$(rsync --version 2>&1)" == openrsync:* ]]; then
+  # macOS openrsync rejects D/F chmod rules. Normalize a disposable local
+  # source copy and preserve those modes instead; the remote root is untouched.
+  STAGING_DIR="$(mktemp -d "${TMPDIR:-/tmp}/ssatcy-com-deploy.XXXXXX")"
+  cp -R "${DIST_DIR}/." "${STAGING_DIR}/"
+  find "${STAGING_DIR}" -type d -exec chmod 0755 {} \;
+  find "${STAGING_DIR}" -type f -exec chmod 0644 {} \;
+  DEPLOY_DIST_DIR="${STAGING_DIR}"
+  RSYNC_PERMISSION_ARGS=(--no-perms --no-owner --no-group)
+fi
+
 if [[ -n "${DEPLOY_LOCAL_TARGET:-}" ]]; then
   REMOTE_TARGET="${DEPLOY_LOCAL_TARGET%/}/"
   run_rsync() {
-    (umask 022; rsync -rltv --no-perms --no-owner --no-group "$@")
+    (umask 022; rsync -rltv "${RSYNC_PERMISSION_ARGS[@]}" "$@")
   }
 else
   NAS_SSH_HELPER="${NAS_SSH_HELPER:-${ROOT_DIR}/../gorfednet.github/scripts/nas-ssh-deploy.sh}"
@@ -52,9 +66,7 @@ else
   run_rsync() {
     rsync \
       -rltvz \
-      --no-perms \
-      --no-owner \
-      --no-group \
+      "${RSYNC_PERMISSION_ARGS[@]}" \
       --timeout=120 \
       --partial-dir=.rsync-partial \
       --rsync-path="umask 022 && rsync" \
@@ -64,12 +76,15 @@ else
 fi
 
 cleanup() {
+  if [[ -n "${STAGING_DIR}" ]]; then
+    rm -rf "${STAGING_DIR}" 2>/dev/null || true
+  fi
   rm -rf "${LOCK_DIR}" 2>/dev/null || true
 }
 trap cleanup EXIT
 
 echo "Phase 1/4: uploading immutable assets without deleting the current release..."
-run_rsync --ignore-existing "${DIST_DIR}/assets/" "${REMOTE_TARGET}assets/"
+run_rsync --ignore-existing "${DEPLOY_DIST_DIR}/assets/" "${REMOTE_TARGET}assets/"
 
 if [[ "${DEPLOY_SKIP_ORIGIN_VERIFY:-0}" != "1" ]]; then
   echo "Phase 2/4: verifying uploaded assets through the production origin..."
@@ -86,16 +101,16 @@ run_rsync \
   --exclude="assets/" \
   --exclude="index.html" \
   --exclude="*/index.html" \
-  "${DIST_DIR}/" \
+  "${DEPLOY_DIST_DIR}/" \
   "${REMOTE_TARGET}"
 
 echo "Phase 4/4: publishing route HTML, with the root entrypoint last..."
 for route in bio music film games live gallery contact; do
   run_rsync \
-    "${DIST_DIR}/${route}/index.html" \
+    "${DEPLOY_DIST_DIR}/${route}/index.html" \
     "${REMOTE_TARGET}${route}/index.html"
 done
-run_rsync "${DIST_DIR}/index.html" "${REMOTE_TARGET}index.html"
+run_rsync "${DEPLOY_DIST_DIR}/index.html" "${REMOTE_TARGET}index.html"
 
 if [[ "${DEPLOY_SKIP_ORIGIN_VERIFY:-0}" != "1" ]]; then
   node "${ROOT_DIR}/scripts/verify-production.mjs" \
