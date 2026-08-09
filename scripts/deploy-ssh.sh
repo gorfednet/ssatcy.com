@@ -69,9 +69,10 @@ else
       "${RSYNC_PERMISSION_ARGS[@]}" \
       --timeout=120 \
       --partial-dir=.rsync-partial \
-      --rsync-path="umask 022 && rsync --chmod=F644" \
+      --rsync-path="umask 022 && rsync" \
       -e "${RSYNC_SHELL}" \
       "$@"
+    nas_ssh_ensure_readable_files "${!#}"
   }
 fi
 
