@@ -20,7 +20,11 @@ test.describe('smoke', () => {
       const response = await page.goto(route, { waitUntil: 'domcontentloaded' })
       expect(response?.status()).toBeLessThan(400)
       await page.waitForLoadState('networkidle')
-      await expect(page.locator('body')).toBeVisible()
+      await page.waitForFunction(
+        () => (document.querySelector('#root')?.childElementCount ?? 0) > 0,
+      )
+      const title = await page.title()
+      expect(title.trim().length).toBeGreaterThan(0)
       expect(errors, `page errors on ${route}: ${errors.join('; ')}`).toEqual([])
       expect(
         failedAssets,
