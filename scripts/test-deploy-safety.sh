@@ -5,6 +5,13 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TEST_ROOT="$(mktemp -d)"
 trap 'rm -rf "${TEST_ROOT}"' EXIT
 
+grep -q -- '--rsync-path="umask 022 && rsync --chmod=F644"' \
+  "${ROOT_DIR}/scripts/deploy-ssh.sh" ||
+  {
+    echo "Remote rsync must normalize file modes without touching directories." >&2
+    exit 1
+  }
+
 fail() {
   echo "$1" >&2
   exit 1

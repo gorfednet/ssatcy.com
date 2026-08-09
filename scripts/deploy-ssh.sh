@@ -69,7 +69,7 @@ else
       "${RSYNC_PERMISSION_ARGS[@]}" \
       --timeout=120 \
       --partial-dir=.rsync-partial \
-      --rsync-path="umask 022 && rsync" \
+      --rsync-path="umask 022 && rsync --chmod=F644" \
       -e "${RSYNC_SHELL}" \
       "$@"
   }
