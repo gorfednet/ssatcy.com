@@ -20,6 +20,8 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+.deploy-env
+.deploy-env
 
 # Logs
 npm-debug.log*
@@ -31,5 +33,6 @@ pnpm-debug.log*
 *.pre-sanitize.bak
 *.bak
 
-# SMB/rsync temp files on mounted volumes
+# Deployment transfer temp files
 .smbdelete*
+.rsync-partial/

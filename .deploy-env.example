@@ -1,0 +1,6 @@
+NAS_SSH_USER=dev
+NAS_SSH_HOST=gorfednas
+NAS_SSH_PORT=22
+NAS_REMOTE_BASE=/volume1/data/websites
+NAS_SSH_IDENTITY_FILE=${HOME}/.ssh/nas_gorfednas
+NAS_SITE_DIR=ssatcy.com

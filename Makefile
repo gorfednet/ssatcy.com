@@ -1,8 +1,7 @@
-# Default deploy target for this static site.
-SMB_DEPLOY_TARGET ?= /Volumes/data/websites/ssatcy.com
-export SMB_DEPLOY_TARGET
+# Default deploy target for this static site (NAS over SSH).
+-include .deploy-env
 
-.PHONY: dev build deploy deploy-smb smoke verify-production test-deploy
+.PHONY: dev build deploy smoke verify-production test-deploy
 
 dev:
 	npm run dev
@@ -10,10 +9,8 @@ dev:
 build:
 	npm run build
 
-deploy: deploy-smb
-
-deploy-smb:
-	npm run deploy:smb
+deploy:
+	npm run deploy
 
 smoke:
 	npm run smoke:deeplinks

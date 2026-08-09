@@ -36,7 +36,7 @@ Open the URL Vite prints (typically `http://localhost:5173`).
 |---------|-------------|
 | `npm run dev` | Local development server with HMR |
 | `npm run build` | Production build → `dist/` |
-| `npm run deploy:smb` | Build, upload assets first, verify them, then publish HTML |
+| `npm run deploy` | Build, upload assets first, verify them, then publish HTML (NAS over SSH) |
 | `npm run smoke:deeplinks` | Verify production bundles, assets, and deep links |
 | `npm run verify:production` | Compare the live release with the local `dist/` build |
 | `npm run test:deploy` | Prove interrupted asset uploads preserve the live release |
@@ -49,32 +49,25 @@ Open the URL Vite prints (typically `http://localhost:5173`).
 ```bash
 make dev
 make build
-make deploy          # uses SMB_DEPLOY_TARGET; see below
+make deploy          # uses .deploy-env NAS SSH settings; see below
 make smoke           # defaults to https://ssatcy.com
 ```
 
-## Deploy (SMB / static host)
+## Deploy (NAS SSH)
 
-1. Mount or sync your web root (example on macOS):
+1. Copy `.deploy-env.example` → `.deploy-env` and confirm the
+   `dev@gorfednas:/volume1/data/websites/ssatcy.com` target (or run
+   `gorfednet.github/scripts/setup-nas-ssh.sh` once).
 
-   `/Volumes/data/websites/ssatcy.com`
-
-2. Set the target and deploy:
-
-   ```bash
-   export SMB_DEPLOY_TARGET="/Volumes/data/websites/ssatcy.com"
-   npm run deploy:smb
-   ```
-
-   Or copy `.env.example` → `.env` and set `SMB_DEPLOY_TARGET`, then:
+2. Deploy:
 
    ```bash
    make deploy
    ```
 
-`deploy:smb` is intentionally non-destructive. It uploads hashed assets without
+`deploy` is intentionally non-destructive. It uploads hashed assets without
 deleting the previous release, verifies every new asset through the production
-origin, and publishes HTML last. A stalled SMB transfer therefore leaves the
+origin, and publishes HTML last. A stalled SSH transfer therefore leaves the
 currently published release intact. Previous hashed assets remain available for
 open browser sessions and can be pruned separately after they age out.
 
@@ -98,8 +91,7 @@ open browser sessions and can be pruned separately after they age out.
 │   └── styles/               # Global CSS, Tailwind entry
 ├── scripts/
 │   ├── check-build-size.mjs  # Production asset budgets
-│   ├── copy-to-smb.py        # Atomic, bounded per-file SMB copies
-│   ├── deploy-smb.sh         # Asset-first guarded SMB deployment
+│   ├── deploy-ssh.sh         # Asset-first guarded NAS SSH deployment
 │   ├── optimize-images.mjs   # Responsive image generator
 │   ├── test-deploy-safety.sh # Interrupted-deployment regression test
 │   ├── verify-production.mjs # Live bundle, asset, and route verification

@@ -11,7 +11,7 @@
     "test:e2e:compat": "playwright test e2e/smoke.spec.ts --project=chromium --project=firefox --project=webkit",
     "test:deploy": "bash ./scripts/test-deploy-safety.sh",
     "postbuild": "cp _headers .htaccess dist/ && for route in bio music film games live gallery contact; do mkdir -p \"dist/$route\" && cp dist/index.html \"dist/$route/index.html\"; done && npm run check:size",
-    "deploy:smb": "npm run build && bash ./scripts/deploy-smb.sh",
+    "deploy": "npm run build && bash ./scripts/deploy-ssh.sh",
     "smoke:deeplinks": "bash ./scripts/smoke-deeplinks.sh",
     "verify:production": "node ./scripts/verify-production.mjs",
     "icons": "node scripts/generate-favicons.mjs",

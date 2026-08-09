@@ -7,7 +7,6 @@ trap 'rm -rf "${TEST_ROOT}"' EXIT
 
 DIST_DIR="${TEST_ROOT}/dist"
 TARGET_DIR="${TEST_ROOT}/target"
-FAKE_COPY="${TEST_ROOT}/fail-copy.py"
 
 mkdir -p \
   "${DIST_DIR}/assets" \
@@ -18,14 +17,23 @@ printf 'new asset\n' > "${DIST_DIR}/assets/new-release.js"
 printf 'old release\n' > "${TARGET_DIR}/index.html"
 printf 'old asset\n' > "${TARGET_DIR}/assets/old-release.js"
 
-printf '%s\n' 'raise SystemExit(20)' > "${FAKE_COPY}"
+FAKE_RSYNC="${TEST_ROOT}/fail-rsync.sh"
+cat > "${FAKE_RSYNC}" <<'EOF'
+#!/usr/bin/env bash
+if [[ "$*" == *"assets/"* ]]; then
+  exit 20
+fi
+exec rsync "$@"
+EOF
+chmod +x "${FAKE_RSYNC}"
 
-if TMPDIR="${TEST_ROOT}/tmp" \
+ln -sf "${FAKE_RSYNC}" "${TEST_ROOT}/rsync"
+
+if PATH="${TEST_ROOT}:${PATH}" \
   DIST_DIR="${DIST_DIR}" \
-  SMB_DEPLOY_TARGET="${TARGET_DIR}" \
-  COPY_SCRIPT="${FAKE_COPY}" \
+  DEPLOY_LOCAL_TARGET="${TARGET_DIR}" \
   DEPLOY_SKIP_ORIGIN_VERIFY=1 \
-  bash "${ROOT_DIR}/scripts/deploy-smb.sh"; then
+  bash "${ROOT_DIR}/scripts/deploy-ssh.sh"; then
   echo "Expected the simulated asset transfer to fail." >&2
   exit 1
 fi
