@@ -12,10 +12,25 @@ if [[ ! -f "${DIST_DIR}/index.html" || ! -d "${DIST_DIR}/assets" ]]; then
   exit 1
 fi
 
-if ! mkdir "${LOCK_DIR}" 2>/dev/null; then
-  echo "Another SSATCY deployment is already running (${LOCK_DIR})." >&2
-  exit 1
-fi
+acquire_lock() {
+  if mkdir "${LOCK_DIR}" 2>/dev/null; then
+    printf '%s\n' "$$" > "${LOCK_DIR}/pid"
+    return
+  fi
+
+  lock_pid="$(cat "${LOCK_DIR}/pid" 2>/dev/null || true)"
+  if [[ "${lock_pid}" =~ ^[0-9]+$ ]] && kill -0 "${lock_pid}" 2>/dev/null; then
+    echo "Another SSATCY deployment is already running (PID ${lock_pid})." >&2
+    exit 1
+  fi
+
+  echo "Removing stale deployment lock ${LOCK_DIR}."
+  rm -rf "${LOCK_DIR}"
+  mkdir "${LOCK_DIR}"
+  printf '%s\n' "$$" > "${LOCK_DIR}/pid"
+}
+
+acquire_lock
 
 IS_LOCAL_DEPLOY=0
 if [[ -n "${DEPLOY_LOCAL_TARGET:-}" ]]; then
@@ -47,7 +62,7 @@ cleanup() {
   else
     "${SSH_CMD[@]}" "rm -rf '${REMOTE_STAGE}'" 2>/dev/null || true
   fi
-  rmdir "${LOCK_DIR}" 2>/dev/null || true
+  rm -rf "${LOCK_DIR}" 2>/dev/null || true
 }
 trap cleanup EXIT
 

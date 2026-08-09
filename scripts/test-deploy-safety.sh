@@ -16,8 +16,11 @@ printf 'new release\n' > "${DIST_DIR}/index.html"
 printf 'new asset\n' > "${DIST_DIR}/assets/new-release.js"
 printf 'old release\n' > "${TARGET_DIR}/index.html"
 printf 'old asset\n' > "${TARGET_DIR}/assets/old-release.js"
+mkdir -p "${TEST_ROOT}/tmp/ssatcy-com-deploy.lock"
+printf '999999\n' > "${TEST_ROOT}/tmp/ssatcy-com-deploy.lock/pid"
 
-if DIST_DIR="${DIST_DIR}" \
+if TMPDIR="${TEST_ROOT}/tmp" \
+  DIST_DIR="${DIST_DIR}" \
   DEPLOY_LOCAL_TARGET="${TARGET_DIR}" \
   DEPLOY_SKIP_ORIGIN_VERIFY=1 \
   DEPLOY_FAIL_AFTER_STAGE=1 \
