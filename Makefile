@@ -2,7 +2,7 @@
 SMB_DEPLOY_TARGET ?= /Volumes/data/websites/ssatcy.com
 export SMB_DEPLOY_TARGET
 
-.PHONY: dev build deploy deploy-smb smoke
+.PHONY: dev build deploy deploy-smb smoke verify-production test-deploy
 
 dev:
 	npm run dev
@@ -17,3 +17,9 @@ deploy-smb:
 
 smoke:
 	npm run smoke:deeplinks
+
+verify-production:
+	npm run verify:production
+
+test-deploy:
+	npm run test:deploy

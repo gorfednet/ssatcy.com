@@ -12,3 +12,15 @@ jobs:
   browser-compat:
     if: github.event_name == 'pull_request'
     uses: gorfednet/.github/.github/workflows/browser-compat.yml@main
+
+  deploy-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:deploy

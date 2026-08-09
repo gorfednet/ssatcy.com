@@ -36,8 +36,10 @@ Open the URL Vite prints (typically `http://localhost:5173`).
 |---------|-------------|
 | `npm run dev` | Local development server with HMR |
 | `npm run build` | Production build → `dist/` |
-| `npm run deploy:smb` | Build, then `rsync` `dist/` to `$SMB_DEPLOY_TARGET` |
-| `npm run smoke:deeplinks` | HTTP 200 check for `/`, `/bio`, … `/contact` |
+| `npm run deploy:smb` | Build, upload assets first, verify them, then publish HTML |
+| `npm run smoke:deeplinks` | Verify production bundles, assets, and deep links |
+| `npm run verify:production` | Compare the live release with the local `dist/` build |
+| `npm run test:deploy` | Prove interrupted asset uploads preserve the live release |
 | `npm run icons` | Regenerate favicon PNGs and `site.webmanifest` from `public/favicon.svg` |
 | `npm run images` | Regenerate responsive WebP assets with Sharp |
 | `npm run check:size` | Verify production JavaScript, CSS, and image budgets |
@@ -70,7 +72,11 @@ make smoke           # defaults to https://ssatcy.com
    make deploy
    ```
 
-`deploy:smb` runs `rsync -av --delete dist/` so removed hashed assets are pruned on the server.
+`deploy:smb` is intentionally non-destructive. It uploads hashed assets without
+deleting the previous release, verifies every new asset through the production
+origin, and publishes HTML last. A stalled SMB transfer therefore leaves the
+currently published release intact. Previous hashed assets remain available for
+open browser sessions and can be pruned separately after they age out.
 
 ## Project layout
 
@@ -92,8 +98,12 @@ make smoke           # defaults to https://ssatcy.com
 │   └── styles/               # Global CSS, Tailwind entry
 ├── scripts/
 │   ├── check-build-size.mjs  # Production asset budgets
+│   ├── copy-to-smb.py        # Atomic, bounded per-file SMB copies
+│   ├── deploy-smb.sh         # Asset-first guarded SMB deployment
 │   ├── optimize-images.mjs   # Responsive image generator
-│   └── smoke-deeplinks.sh    # Post-deploy HTTP smoke test
+│   ├── test-deploy-safety.sh # Interrupted-deployment regression test
+│   ├── verify-production.mjs # Live bundle, asset, and route verification
+│   └── smoke-deeplinks.sh    # Compatibility wrapper for live verification
 ├── _headers                # Security / cache headers (copied to dist)
 ├── .htaccess               # Apache SPA fallback + headers (copied to dist)
 └── site-copy.txt           # Copy deck reference (not loaded at runtime)
